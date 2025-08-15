@@ -17,7 +17,7 @@ export default function RootLayout() {
         "Rubik-SemiBold": require("../assets/fonts/Rubik-SemiBold.ttf"),
     });
 
-    useEffect(() => {
+    useEffect( () => {
         if (fontsLoaded) {
             SplashScreen.hideAsync();
         }

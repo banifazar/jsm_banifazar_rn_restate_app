@@ -4,7 +4,7 @@ import {getCurrentUser} from "./appwrite";
 import {useAppwrite} from "./useAppwrite";
 
 interface GlobalContextType {
-    isLogged: boolean;
+    isLoggedIn: boolean;
     user: User | null;
     loading: boolean;
     refetch: () => void;
@@ -32,12 +32,12 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
         fn: getCurrentUser,
     });
 
-    const isLogged = !!user;
+    const isLoggedIn = !!user;
 
     return (
         <GlobalContext.Provider
             value={{
-                isLogged,
+                isLoggedIn,
                 user,
                 loading,
                 refetch,

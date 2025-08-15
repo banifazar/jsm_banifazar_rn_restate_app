@@ -53,12 +53,16 @@ export async function login() {
 export async function logout() {
     try {
         await account.deleteSession('current');
+        console.log('Logout successful');
         return true;
     } catch (error) {
         console.error(error);
         return false;
     }
+
+
 }
+
 
 export async function getCurrentUser() {
     try {
