@@ -71,17 +71,19 @@ const Profile = () => {
 
         <View className="mt-5 flex flex-row justify-center">
           <View className="relative mt-5 flex flex-col items-center">
-            <Image
-              source={{
-                uri: user?.avatar,
-              }}
-              className="relative size-44 rounded-full"
-            />
-            <TouchableOpacity className="absolute bottom-11 right-2">
-              <Image source={icons.edit} className="size-9" />
-            </TouchableOpacity>
+            <View className="relative">
+              <Image
+                source={{ uri: user?.avatar }}
+                className="size-44 rounded-full"
+              />
+              <TouchableOpacity className="absolute bottom-2 right-0 rounded-full p-1">
+                <Image source={icons.edit} className="size-8" />
+              </TouchableOpacity>
+            </View>
 
-            <Text className="mt-2 font-rubik-bold text-2xl">{user?.name}</Text>
+            <Text className="mt-2 text-center font-rubik-bold text-2xl">
+              {user?.name}
+            </Text>
           </View>
         </View>
 
