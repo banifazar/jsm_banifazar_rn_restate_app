@@ -99,7 +99,7 @@ export async function getCurrentUser() {
   }
 }
 
-export async function getLatestPropoerties() {
+export async function getLatestProperties() {
   try {
     const result = await databases.listDocuments(
       config.databaseId!,
