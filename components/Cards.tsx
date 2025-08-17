@@ -3,8 +3,26 @@ import images from "@/constants/images";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { Models } from "react-native-appwrite";
 
+interface Property extends Models.Document {
+  image: string;
+  name: string;
+  price: number;
+  address: string;
+  rating: number;
+  type: string;
+  description: string;
+  geolocation: string;
+  area: number;
+  bedrooms: number;
+  bathrooms: number;
+  facilities: string[];
+  agent: string;
+  reviews: string[];
+  gallery: string[];
+}
+
 interface Props {
-  item: Models.Document;
+  item: Property;
   onPress?: () => void;
 }
 
