@@ -1,3 +1,5 @@
+import * as Linking from "expo-linking";
+import { openAuthSessionAsync } from "expo-web-browser";
 import {
   Account,
   Avatars,
@@ -6,8 +8,6 @@ import {
   OAuthProvider,
   Query,
 } from "react-native-appwrite";
-import * as Linking from "expo-linking";
-import { openAuthSessionAsync } from "expo-web-browser";
 
 export const config = {
   platform: "com.banifazar.restate",
@@ -152,5 +152,28 @@ export async function getProperties({
   } catch (error) {
     console.error(error);
     return [];
+  }
+}
+
+// Define DefaultDocument type based on Appwrite document structure
+export type DefaultDocument = {
+  $id: string;
+  $createdAt: string;
+  $updatedAt: string;
+  [key: string]: any;
+};
+
+export async function getPropertyById({ id }: { id: string }): Promise<DefaultDocument | null> {
+  try {
+    const result = await databases.getDocument(
+      config.databaseId!,
+      config.propertiesCollectionId!,
+      id,
+    );
+
+    return result as DefaultDocument;
+  } catch (error) {
+    console.error(error);
+    return null;
   }
 }
