@@ -31,6 +31,19 @@ allprojects {
     mavenCentral()
     maven { url 'https://www.jitpack.io' }
   }
+  
+  // Exclude problematic spotless.gradle files from node_modules
+  afterEvaluate { project ->
+    if (project.hasProperty('android')) {
+      project.android {
+        sourceSets.all { sourceSet ->
+          sourceSet.java {
+            exclude '**/node_modules/**/spotless.gradle'
+          }
+        }
+      }
+    }
+  }
 }
 
 apply plugin: "expo-root-project"

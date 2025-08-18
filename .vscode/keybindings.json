@@ -1,0 +1,8 @@
+[
+  {
+    "key": "enter",
+    "command": "multiCommand.acceptSuggestionWithSpace",
+    "when": "editorTextFocus && suggestWidgetVisible"
+  }
+]
+

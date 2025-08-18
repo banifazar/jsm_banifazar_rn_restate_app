@@ -1,4 +1,13 @@
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Card, FeaturedCard, Property } from "@/components/Cards";
+import Filters from "@/components/Filters";
+import NoResults from "@/components/NoResults";
+import Search from "@/components/Search";
+import icons from "@/constants/icons";
+import { getLatestProperties, getProperties } from "@/lib/appwrite";
+import { useGlobalContext } from "@/lib/global-provider";
+import { useAppwrite } from "@/lib/useAppwrite";
+import { router, useLocalSearchParams } from "expo-router";
+import { useEffect } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -7,16 +16,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import icons from "@/constants/icons";
-import Search from "@/components/Search";
-import { Card, FeaturedCard } from "@/components/Cards";
-import Filters from "@/components/Filters";
-import { useGlobalContext } from "@/lib/global-provider";
-import { router, useLocalSearchParams } from "expo-router";
-import { getLatestProperties, getProperties } from "@/lib/appwrite";
-import { useAppwrite } from "@/lib/useAppwrite";
-import { useEffect } from "react";
-import NoResults from "@/components/NoResults";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
   const { user } = useGlobalContext();
@@ -56,7 +56,10 @@ export default function Index() {
       <FlatList
         data={properties}
         renderItem={({ item }) => (
-          <Card item={item} onPress={() => handleCardPress(item.$id)} />
+          <Card
+            item={item as unknown as Property}
+            onPress={() => handleCardPress(item.$id)}
+          />
         )}
         keyExtractor={(item) => item.$id}
         numColumns={2}
@@ -113,7 +116,7 @@ export default function Index() {
                   data={latestProperties}
                   renderItem={({ item }) => (
                     <FeaturedCard
-                      item={item}
+                      item={item as unknown as Property}
                       onPress={() => handleCardPress(item.$id)}
                     />
                   )}

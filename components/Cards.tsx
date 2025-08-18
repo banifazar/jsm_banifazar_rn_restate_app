@@ -3,7 +3,7 @@ import images from "@/constants/images";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { Models } from "react-native-appwrite";
 
-interface Property extends Models.Document {
+export interface Property extends Models.Document {
   image: string;
   name: string;
   price: number;
